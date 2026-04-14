@@ -4,6 +4,8 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { CookieNotice } from '@/components/CookieNotice';
+import Script from 'next/script';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -91,11 +93,20 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6652677798942334"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className="min-h-screen flex flex-col bg-background text-foreground">
         <ThemeProvider>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <CookieNotice />
         </ThemeProvider>
       </body>
     </html>
